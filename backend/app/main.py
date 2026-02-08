@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from app.database import Base, engine
 from app.routes import employee, attendance, dashboard
 from fastapi.middleware.cors import CORSMiddleware
-
+from app.config import FRONTEND_URL
 
 Base.metadata.create_all(bind=engine)
 
@@ -14,7 +14,7 @@ app.include_router(dashboard.router)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://hrms-frontend-dtc2.onrender.com"],
+    allow_origins=[FRONTEND_URL],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
